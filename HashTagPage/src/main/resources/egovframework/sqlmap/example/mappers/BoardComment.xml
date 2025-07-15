@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="teamproject.boardComment.service.impl.BoardCommentMapper">
+<!-- id="메소드명",parameterType="매개변수자료형",resultType="return자료형"  -->
+<select id="selectBoardCommentList" parameterType="Criteria" resultType="BoardCommentVO">
+      SELECT * FROM "BoardComment"
+      WHERE "board_comment_id" LIKE '%' || #{searchKeyword} ||'%'
+      OFFSET #{firstIndex} ROWS
+      FETCH NEXT #{pageUnit} ROWS ONLY
+</select> 
+<select id="selectBoardCommentListTotCnt" parameterType="Criteria" resultType="int"> 
+        		select count(*) from "BoardComment"
+		WHERE "board_comment_id" LIKE '%'
+		||
+		#{searchKeyword} ||'%' 
+</select>   
+<select id="selectBoardComment" parameterType="String" resultType="BoardCommentVO">
+		select * from "BoardComment"
+		WHERE "board_comment_id" = #{boardCommentId}
+</select>  
+
+	<update id="update" parameterType="BoardCommentVO">
+		UPDATE "BoardComment"
+		SET
+			"post_id" = #{postId},
+    		"board_comment_content" = #{boardCommentContent},
+    		"board_comment_created_at" = SYSDATE,
+    		"board_comment_is_deleted" = #{boardCommentIsDeleted},
+    		"user_id" = #{userId}
+        WHERE "board_comment_id" = #{boardCommentId}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM "BoardComment"
+		WHERE "board_comment_id" = #{boardCommentId}
+
+	</delete>	
+<insert id="insert" parameterType="BoardCommentVO">
+  INSERT INTO "BoardComment" (
+    "board_comment_id", "post_id", "board_comment_content", "board_comment_created_at",
+    "board_comment_is_deleted", "user_id")
+  VALUES (
+    #{boardCommentId}, #{postId}, #{boardCommentContent}, SYSDATE,
+    #{boardCommentIsDeleted}, #{userId})
+</insert>
+
+</mapper>
