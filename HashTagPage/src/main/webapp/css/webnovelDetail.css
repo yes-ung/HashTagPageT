@@ -1,0 +1,115 @@
+
+    :root {
+      --bg-color: #fdfaf6;
+      --text-color: #333;
+      --accent: #685f52;
+      --button-bg: #eee;
+      --button-hover: #ddd;
+      --font-size: 1.1rem;
+    }
+
+    .viewer-body {
+      font-family: 'Noto Serif KR', serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+    }
+
+    .viewer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px;
+      background: white;
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .selector select {
+      padding: 6px 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .content {
+      margin-top: 20px;
+      font-size: var(--font-size);
+      line-height: 1.8;
+      white-space: pre-wrap;
+      flex-grow: 1;
+      min-height: 300px;
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .content.fade-out {
+      opacity: 0;
+    }
+
+    .page-info {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 10px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .nav button {
+      flex: 1;
+      padding: 12px;
+      font-size: 1rem;
+      background-color: var(--button-bg);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .nav button:hover {
+      background-color: var(--button-hover);
+    }
+
+    .nav button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 1.3rem;
+      }
+
+      .content {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        flex-direction: column;
+      }
+    }
